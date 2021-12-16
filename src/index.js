@@ -2,7 +2,7 @@
 console.log(fxhash)   // the 64 chars hex number fed to your algorithm
 console.log(fxrand()) // deterministic PRNG function, use it instead of Math.random()
 
-// note about the fxrand() function 
+// note about the fxrand() function
 // when the "fxhash" is always the same, it will generate the same sequence of
 // pseudo random numbers, always
 
@@ -20,10 +20,12 @@ console.log(fxrand()) // deterministic PRNG function, use it instead of Math.ran
 //   "Inverted": true
 // }
 
-// this code writes the values to the DOM as an example
-const container = document.createElement("div")
-container.innerText = `
-  random hash: ${fxhash}\n
-  some pseudo random values: [ ${fxrand()}, ${fxrand()}, ${fxrand()}, ${fxrand()}, ${fxrand()},... ]\n
-`
-document.body.prepend(container)
+import { run } from '/src/run'
+import * as program from '/src/program'
+
+run(program, { element : document.querySelector('pre') }).then(function(e){
+  console.log(e)
+}).catch(function(e) {
+  console.warn(e.message)
+  console.log(e.error)
+})
